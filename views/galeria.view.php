@@ -14,7 +14,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <?php if(empty($errores)) : ?>
-                        <p><?= $mensajeConfirmacion ?></p>
+                        <p><?= $mensaje ?></p>
                     <?php else : ?>
                         <ul>
                             <?php foreach($errores as $error) : ?>
