@@ -3,9 +3,12 @@ require_once __DIR__.'../exceptions/FileException.php';
 require_once 'utils/utils.php';
 require_once 'utils/File.php';
 require_once 'entity/ImagenGaleria.php';
+require_once 'database/Connection.php';
+require_once 'database/QueryBuilder.php';
 $errores = [];
 $descripcion = '';
 $mensaje = '';
+$connection = Connection::make();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     try {
@@ -14,10 +17,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $imagen = new File('imagen', $tipoImagen);
         $imagen ->saveUploadFile(ImagenGaleria::RUTA_IMAGENES_GALERY);
         $imagen->copyFile(ImagenGaleria::RUTA_IMAGENES_GALERY, ImagenGaleria::RUTA_IMAGENES_PORTFOLIO);
+
+        $sql="INSERT INTO imagenes(nombre, descripcion)
+          VALUES('".$imagen->getFileName()."', '$descripcion')";
+        if ($connection->exec($sql) === false)
+            $errores[]='No se a podido insertat en la base de datos';
+        else
+            $mensaje='Se ha guardado en la base de datos';
+
         $mensaje = 'Imagen guardada';
     }catch (FileException $fileException){
         $errores[] = $fileException->getMessage();
     }
-
+    $queryBuilder = new QueryBuilder($connection);
+    $imagenes=$queryBuilder->findAll('imagenes', 'ImagenGaleria');
 }
 require 'views/galeria.view.php';

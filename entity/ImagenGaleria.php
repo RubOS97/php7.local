@@ -12,6 +12,11 @@ class ImagenGaleria
     const RUTA_IMAGENES_GALERY = 'images/index/gallery/';
 
     /**
+     * @var  integer
+     */
+    private $id;
+
+    /**
      * @var  string
      */
     private $nombre;
@@ -40,8 +45,9 @@ class ImagenGaleria
      * @param int $numLikes
      * @param int $numDownloads
      */
-    public function __construct(string $nombre, string $descripcion, int $numVisualizaciones=0, int $numLikes=0, int $numDownloads=0)
+    public function __construct(string $nombre = "", string $descripcion = "", int $numVisualizaciones=0, int $numLikes=0, int $numDownloads=0)
     {
+        $this->id = null;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->numVisualizaciones = $numVisualizaciones;
@@ -76,6 +82,22 @@ class ImagenGaleria
     {
         $this->nombre = $nombre;
         return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 
     /**
