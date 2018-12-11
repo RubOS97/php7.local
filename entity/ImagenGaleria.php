@@ -1,39 +1,37 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Pauessa
+ * User: lliurex
  * Date: 29/11/2018
- * Time: 11:57
+ * Time: 10:57
  */
 
 class ImagenGaleria
 {
-    const RUTA_IMAGENES_PORTFOLIO = 'images/index/portfolio/';
-    const RUTA_IMAGENES_GALERY = 'images/index/gallery/';
-
+    const RUTA_IMAGENES_PORTFOLIO ='images/index/portfolio/';
+    const RUTA_IMAGENES_GALLERY ='images/index/gallery/';
     /**
-     * @var  integer
+     * @var int
      */
     private $id;
-
     /**
-     * @var  string
+     * @var string
      */
     private $nombre;
     /**
-     * @var  string
+     * @var string
      */
     private $descripcion;
     /**
-     * @var  integer
+     * @var int
      */
     private $numVisualizaciones;
     /**
-     * @var  integer
+     * @var  int
      */
     private $numLikes;
     /**
-     * @var  integer
+     * @var int
      */
     private $numDownloads;
 
@@ -45,9 +43,10 @@ class ImagenGaleria
      * @param int $numLikes
      * @param int $numDownloads
      */
-    public function __construct(string $nombre = "", string $descripcion = "", int $numVisualizaciones=0, int $numLikes=0, int $numDownloads=0)
+    public function __construct(string $nombre="", string $descripcion="", int $numVisualizaciones=0, int $numLikes=0, int $numDownloads=0)
     {
-        $this->id = null;
+
+        $this->id=null;
         $this->nombre = $nombre;
         $this->descripcion = $descripcion;
         $this->numVisualizaciones = $numVisualizaciones;
@@ -56,19 +55,35 @@ class ImagenGaleria
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param int $id
+     * @return ImagenGaleria
+     */
+    public function setId(int $id): ImagenGaleria
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
     {
         return $this->getDescripcion();
-        // TODO: Implement __toString() method.
     }
 
 
     /**
      * @return string
      */
-
     public function getNombre(): string
     {
         return $this->nombre;
@@ -82,22 +97,6 @@ class ImagenGaleria
     {
         $this->nombre = $nombre;
         return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
     }
 
     /**
@@ -175,17 +174,18 @@ class ImagenGaleria
     /**
      * @return string
      */
-    public function  getUrlPortfolio(): string
+    public function getUrlPortfolio() : string
     {
-        return self::RUTA_IMAGENES_PORTFOLIO.$this->getNombre();
+        return self::RUTA_IMAGENES_PORTFOLIO . $this->getNombre();
     }
 
     /**
      * @return string
      */
-    public function  getUrlGallery(): string
+    public function getUrlGallery() : string
     {
-        return self::RUTA_IMAGENES_GALERY.$this->getNombre();
+        return self::RUTA_IMAGENES_GALLERY . $this->getNombre();
     }
+
 
 }

@@ -1,11 +1,13 @@
 <?php
-    require 'entity/ImagenGaleria.php';
+
+    require_once 'entity/ImagenGaleria.php';
+
     $imagenes=[];
-    for ($i=1; $i<=12; $i++){
-        $im=new ImagenGaleria($i.'.jpg', 'descripcion imagen '.$i, $i, $i, $i);
-        //echo $im->getNombre();
-        $imagenes[$i] = $im;
-        //echo $imagenes[$i]->getNombre();
+    for($i=1;$i<=12;$i++){
+        $imagenes[]=new ImagenGaleria($i.'.jpg','descripcion imagen ' . $i,$i,$i,$i);
+
+
     }
     require 'utils/utils.php';
     require 'views/index.view.php';
+
