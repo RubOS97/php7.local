@@ -6,7 +6,7 @@
  * Time: 10:57
  */
 
-class ImagenGaleria
+class ImagenGaleria implements IEntity
 {
     const RUTA_IMAGENES_PORTFOLIO ='images/index/portfolio/';
     const RUTA_IMAGENES_GALLERY ='images/index/gallery/';
@@ -187,5 +187,17 @@ class ImagenGaleria
         return self::RUTA_IMAGENES_GALLERY . $this->getNombre();
     }
 
-
+    /**
+     * @return array
+     */
+    public function toArray(): array
+    {
+        return[
+            'nombre'=>$this->getnombre(),
+            'descripcion'=>$this->getDescripcion(),
+            'numVisualizaciones'=>$this->getNumVisualizaciones(),
+            'numLikes'=>$this->getNumLikes(),
+            'numDownloads'=>$this->getNumDownloads()
+        ];
+    }
 }
