@@ -52,7 +52,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <?php foreach($imagenes as $imagen) : ?>
+                        <?php foreach($imagenes ?? [] as $imagen) : ?>
 
                             <tr>
                                 <th scope="row"><?= $imagen->getId()?></th>
